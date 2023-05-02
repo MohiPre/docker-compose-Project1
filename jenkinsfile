@@ -1,0 +1,17 @@
+pipeline{
+    agent any 
+    stages{
+        stage("Build"){
+            steps{
+                sh 'rm -rf docker-compose-Project1 '
+                sh 'git clone https://github.com/MohiPre/docker-compose-Project1.git '
+            }
+        }
+        stage("deploy"){
+            steps{
+                sh 'docker-compose -f docker-compose-Project1/docker-compose.yml up -d'
+                sh 'docker ps'
+            }
+        }
+    }
+}
